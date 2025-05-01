@@ -24,17 +24,24 @@ public class JDlgcmc_usuarios extends javax.swing.JDialog {
         
         
     }
+    
 public void Habilitar(boolean value){
-jTxtcmc_apelido.setVisible(value);
-jTxtcmc_nome.setVisible(value);
-jTxtid_usuario.setVisible(value);
-jBtnAlterar.setVisible(!value);
-jBtnCancelar.setVisible(value);
-jBtnConfirmar.setVisible(value);
-jBtnExcluir.setVisible(!value);
-jBtnIncluir.setVisible(!value);
-jBtnPesquisar.setVisible(!value);
-};
+    jTxtcmc_apelido.setEnabled(value);
+    jTxtcmc_nome.setEnabled(value);
+    jTxtid_usuario.setEnabled(value);
+    jPwfcmc_senha.setEnabled(value);
+    jFmtcmc_cpf.setEnabled(value);
+    jFmtcmc_data_nascimento.setEnabled(value);
+    jCbocmc_nivel.setEnabled(value);
+    jChbcmc_ativo.setEnabled(value);
+    jBtnAlterar.setEnabled(!value);
+    jBtnCancelar.setEnabled(value);
+    jBtnConfirmar.setEnabled(value);
+    jBtnExcluir.setEnabled(!value);
+    jBtnIncluir.setEnabled(!value);
+    jBtnPesquisar.setEnabled(!value);
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +84,7 @@ jBtnPesquisar.setVisible(!value);
 
         jLabel1.setText("codigo");
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +92,7 @@ jBtnPesquisar.setVisible(!value);
             }
         });
 
-        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +100,7 @@ jBtnPesquisar.setVisible(!value);
             }
         });
 
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +108,7 @@ jBtnPesquisar.setVisible(!value);
             }
         });
 
-        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
         jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,10 +116,15 @@ jBtnPesquisar.setVisible(!value);
             }
         });
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
-        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar.png"))); // NOI18N
+        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
         jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +136,17 @@ jBtnPesquisar.setVisible(!value);
 
         jLabel3.setText("Apelido");
 
+        try {
+            jFmtcmc_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFmtcmc_data_nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFmtcmc_data_nascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtcmc_data_nascimentoActionPerformed(evt);
@@ -258,13 +281,22 @@ jBtnPesquisar.setVisible(!value);
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showInputDialog(null,"Deseja excluir tudo !+");
+       int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
+if(opcao == JOptionPane.YES_OPTION){
+    // Código para excluir o registro
+}
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
         JOptionPane.showInputDialog(null,"Entre com o código ?");
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+          Habilitar(Boolean.FALSE);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author notedarckbr
@@ -18,25 +20,37 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
+        Habilitar(false);
+        
     }
-public void Habilitar(boolean value){
-jTxtcmc_bairro.setVisible(value);
-jTxtcmc_cep.setVisible(value);
-jTxtcmc_email.setVisible(value);
-jTxtcmc_endereco.setVisible(value);
-jTxtcmc_estado.setVisible(value);
-jTxtcmc_nome.setVisible(value);
-jTxtcmc_observacoes.setVisible(value);
-jTxtid_clientes.setVisible(value);
-jtxtcmc_cidade.setVisible(value);
-jFmtcmc_cpf.setValue(value);
-jFmtcmc_data_autualizacao.setValue(value);
-jFmtcmc_data_criacao.setValue(value);
-jFmtcmc_data_de_nascimento.setValue(value);
-jFmtcmc_rg.setValue(value);
-jFmtcmc_telefone.setValue(value);
-jFmtmc_ultima_compra.setValue(value);
-};
+public void Habilitar(boolean value) {
+    jTxtcmc_bairro.setEnabled(value);
+    jTxtcmc_cep.setEnabled(value);
+    jTxtcmc_email.setEnabled(value);
+    jTxtcmc_endereco.setEnabled(value);
+    jTxtcmc_estado.setEnabled(value);
+    jTxtcmc_nome.setEnabled(value);
+    jTxtcmc_observacoes.setEnabled(value);
+    jTxtid_clientes.setEnabled(value);
+    jtxtcmc_cidade.setEnabled(value);
+    jFmtcmc_cpf.setEnabled(value);
+    jFmtcmc_data_autualizacao.setEnabled(value);
+    jFmtcmc_data_criacao.setEnabled(value);
+    jFmtcmc_data_de_nascimento.setEnabled(value);
+    jFmtcmc_rg.setEnabled(value);
+    jFmtcmc_telefone.setEnabled(value);
+    jFmtmc_ultima_compra.setEnabled(value);
+    jCbocmc_genero.setEnabled(value);
+    jChbcmc_status.setEnabled(value);
+    
+    jBtnAlterar.setEnabled(!value);
+    jBtnCancelar.setEnabled(value);
+    jBtnConfirmar.setEnabled(value);
+    jBtnExcluir.setEnabled(!value);
+    jBtnIncluir.setEnabled(!value);
+    jBtnPesquisar.setEnabled(!value);
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +104,7 @@ jFmtmc_ultima_compra.setValue(value);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,20 +112,40 @@ jFmtmc_ultima_compra.setValue(value);
             }
         });
 
-        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
+        jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAlterarActionPerformed(evt);
+            }
+        });
 
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
+        jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirActionPerformed(evt);
+            }
+        });
 
-        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
+        jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnConfirmarActionPerformed(evt);
+            }
+        });
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
 
-        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar.png"))); // NOI18N
+        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
+        jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPesquisarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Telefone");
 
@@ -119,7 +153,19 @@ jFmtmc_ultima_compra.setValue(value);
 
         jLabel6.setText("RG");
 
+        try {
+            jFmtcmc_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel1.setText("Codigo");
+
+        try {
+            jFmtcmc_data_de_nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel2.setText("Nome");
 
@@ -157,11 +203,28 @@ jFmtmc_ultima_compra.setValue(value);
 
         jChbcmc_status.setText("Status");
 
+        try {
+            jFmtcmc_data_criacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFmtcmc_data_criacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtcmc_data_criacaoActionPerformed(evt);
             }
         });
+
+        try {
+            jFmtcmc_data_autualizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFmtmc_ultima_compra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,7 +380,7 @@ jFmtmc_ultima_compra.setValue(value);
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addGap(1, 1, 1)
-                .addComponent(jTxtcmc_observacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jTxtcmc_observacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluir)
@@ -333,6 +396,7 @@ jFmtmc_ultima_compra.setValue(value);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
+        Habilitar(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -343,6 +407,29 @@ jFmtmc_ultima_compra.setValue(value);
     private void jFmtcmc_data_criacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtcmc_data_criacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFmtcmc_data_criacaoActionPerformed
+
+    private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        Habilitar(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnAlterarActionPerformed
+
+    private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
+        Habilitar(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnConfirmarActionPerformed
+
+    private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
+        // TODO add your handling code here:
+         int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
+if(opcao == JOptionPane.YES_OPTION){
+    // Código para excluir o registro
+}
+    }//GEN-LAST:event_jBtnExcluirActionPerformed
+
+    private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
+        // TODO add your handling code here:
+         JOptionPane.showInputDialog(null,"Entre com o código ?");
+    }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
