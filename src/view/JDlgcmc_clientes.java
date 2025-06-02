@@ -31,7 +31,7 @@ public void Habilitar(boolean value) {
     jTxtcmc_estado.setEnabled(value);
     jTxtcmc_nome.setEnabled(value);
     jTxtcmc_observacoes.setEnabled(value);
-    jTxtid_clientes.setEnabled(value);
+    jTxtcmc_id_clientes.setEnabled(value);
     jtxtcmc_cidade.setEnabled(value);
     jFmtcmc_cpf.setEnabled(value);
     jFmtcmc_data_autualizacao.setEnabled(value);
@@ -72,7 +72,7 @@ public void Habilitar(boolean value) {
         jFmtcmc_cpf = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jFmtcmc_rg = new javax.swing.JFormattedTextField();
-        jTxtid_clientes = new javax.swing.JTextField();
+        jTxtcmc_id_clientes = new javax.swing.JTextField();
         jFmtcmc_data_de_nascimento = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -138,6 +138,11 @@ public void Habilitar(boolean value) {
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
@@ -252,7 +257,7 @@ public void Habilitar(boolean value) {
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtid_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtcmc_id_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +310,7 @@ public void Habilitar(boolean value) {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtid_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTxtcmc_id_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -420,16 +425,22 @@ public void Habilitar(boolean value) {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-         int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
-if(opcao == JOptionPane.YES_OPTION){
-    // Código para excluir o registro
-}
+      int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);;
+        if(opcao == JOptionPane.YES_OPTION){
+            // Código para excluir o registro
+        }
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
          JOptionPane.showInputDialog(null,"Entre com o código ?");
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+         Habilitar(false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,9 +522,9 @@ if(opcao == JOptionPane.YES_OPTION){
     private javax.swing.JTextField jTxtcmc_email;
     private javax.swing.JTextField jTxtcmc_endereco;
     private javax.swing.JTextField jTxtcmc_estado;
+    private javax.swing.JTextField jTxtcmc_id_clientes;
     private javax.swing.JTextField jTxtcmc_nome;
     private javax.swing.JTextField jTxtcmc_observacoes;
-    private javax.swing.JTextField jTxtid_clientes;
     private javax.swing.JTextField jtxtcmc_cidade;
     // End of variables declaration//GEN-END:variables
 }

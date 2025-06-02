@@ -46,7 +46,7 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTxtid_clientes" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="jTxtcmc_id_clientes" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTxtid_clientes" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTxtcmc_id_clientes" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -274,6 +274,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnPesquisar">
       <Properties>
@@ -315,7 +318,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFmtcmc_rg">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtid_clientes">
+    <Component class="javax.swing.JTextField" name="jTxtcmc_id_clientes">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFmtcmc_data_de_nascimento">
       <Properties>
