@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.cmc_usuarios;
+import dao.cmc_usuariosDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +43,16 @@ public void Habilitar(boolean value){
     jBtnIncluir.setEnabled(!value);
     jBtnPesquisar.setEnabled(!value);
 }
-
+ public void limpar(){
+    jTxtid_usuario.setText("");
+    jTxtcmc_nome.setText("");
+    jTxtcmc_apelido.setText("");
+    jFmtcmc_cpf.setText("");
+    jFmtcmc_data_nascimento.setText("");
+    jCbocmc_nivel.setSelectedItem(-1);
+    jChbcmc_ativo.setSelected(false);
+    jPwfcmc_senha.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,12 +86,6 @@ public void Habilitar(boolean value){
         jChbcmc_ativo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jTxtid_usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtid_usuarioActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("codigo");
 
@@ -161,7 +166,7 @@ public void Habilitar(boolean value){
 
         jPwfcmc_senha.setText("jPasswordField1jPwfjPwfjPwfjPwfjPwf");
 
-        jCbocmc_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCbocmc_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Vendedor", "Cliente"}));
 
         jLabel7.setText("nível");
 
@@ -256,13 +261,10 @@ public void Habilitar(boolean value){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtid_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtid_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtid_usuarioActionPerformed
-
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
         Habilitar(Boolean.TRUE);
+        limpar();
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jFmtcmc_data_nascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtcmc_data_nascimentoActionPerformed
@@ -270,8 +272,26 @@ public void Habilitar(boolean value){
     }//GEN-LAST:event_jFmtcmc_data_nascimentoActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:]
+         cmc_usuarios usuarios = new cmc_usuarios();
+        int codigo = Integer.parseInt(jTxtid_usuario.getText());
+        usuarios.setCmc_id_usuario(codigo);
+        usuarios.setCmc_nome(jTxtcmc_nome.getText() );
+        usuarios.setCmc_apelido(jTxtcmc_apelido.getText());
+        usuarios.setCmc_cpf(jFmtcmc_cpf.getText());
+        usuarios.setCmc_data_nascimento(null);
+        usuarios.setCmc_senha(jPwfcmc_senha.getText());
+        usuarios.setCmc_nivel(jCbocmc_nivel.getSelectedIndex());
+        if(jChbcmc_ativo.isSelected() == true){
+                usuarios.setCmc_ativo("S");
+        }else{
+        usuarios.setCmc_ativo("N");
+        }
+
+        cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
+        usuariosDao.insert(usuarios);
         Habilitar(Boolean.FALSE);
+        limpar();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -284,13 +304,55 @@ public void Habilitar(boolean value){
        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
 if(opcao == JOptionPane.YES_OPTION){
     // Código para excluir o registro
+    if (opcao == JOptionPane.YES_OPTION) {
+            cmc_usuarios usuarios = new cmc_usuarios();
+            int codigo = Integer.parseInt(jTxtid_usuario.getText());
+        usuarios.setCmc_id_usuario(codigo);
+        usuarios.setCmc_nome(jTxtcmc_nome.getText() );
+        usuarios.setCmc_apelido(jTxtcmc_apelido.getText());
+        usuarios.setCmc_cpf(jFmtcmc_cpf.getText());
+        usuarios.setCmc_data_nascimento(null);
+        usuarios.setCmc_senha(jPwfcmc_senha.getText());
+        usuarios.setCmc_nivel(jCbocmc_nivel.getSelectedIndex());
+        if(jChbcmc_ativo.isSelected() == true){
+                usuarios.setCmc_ativo("S");
+        }else{
+        usuarios.setCmc_ativo("N");
+        }
+            
+            
+           cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
+            usuariosDao.delete(usuarios);
+            
+        }
+    limpar();
 }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showInputDialog(null,"Entre com o código ?");
+        String id = JOptionPane.showInputDialog(null,"Entre com o código ?");
+         int codigo = Integer.valueOf(id);
+      cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
+      cmc_usuarios usuarios = (cmc_usuarios) usuariosDao.list(codigo);
+      if (usuarios == null) {
+            JOptionPane.showInputDialog(null, "Codigo não existe");
+        }else{
+      jTxtid_usuario.setText(id);
+      jTxtcmc_nome.setText(usuarios.getCmc_nome());
+      jTxtcmc_apelido.setText(usuarios.getCmc_apelido());
+      jFmtcmc_cpf.setText(usuarios.getCmc_cpf());
+//      jFmtDataNacimento.setText(usuarios.getDataNascimento());
+      jPwfcmc_senha.setText(usuarios.getCmc_senha());
+      jCbocmc_nivel.setSelectedIndex(usuarios.getCmc_nivel());
+      
+      if(usuarios.getCmc_ativo().equals("S")){
+      jChbcmc_ativo.setSelected(true);
+      }else{
+      jChbcmc_ativo.setSelected(false);
+      }
+      }
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

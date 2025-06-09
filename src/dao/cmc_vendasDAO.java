@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import bean.cmc_vendas;
@@ -16,7 +12,7 @@ public class cmc_vendasDAO extends DAO_Abstract {
 
     public cmc_vendasDAO() {
         try {
-           Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
             String user = "carlos_coenga";
             String pass = "carlos_coenga";
@@ -25,17 +21,20 @@ public class cmc_vendasDAO extends DAO_Abstract {
             Logger.getLogger(cmc_vendasDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void insert(Object object) {
         cmc_vendas venda = (cmc_vendas) object;
-        try (PreparedStatement pst = cnt.prepareStatement("INSERT INTO vendas VALUES (?, ?, ?, ?, ?)")) {
+        try (PreparedStatement pst = cnt.prepareStatement(
+                "INSERT INTO vendas (id_venda, id_cliente, id_usuario, forma_pagamento, observacoes, status, data_venda) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
             pst.setInt(1, venda.getCmc_id_venda());
-            pst.setInt(2, venda.getCmc_id_cliente());
-            pst.setInt(3, venda.getCmc_id_produto());
-            pst.setInt(4, venda.getCmc_quantidade());
-            pst.setDate(5, new java.sql.Date(venda.getCmc_data_venda().getTime()));
-            
+            pst.setInt(2, venda.getCmc_id_clinte());
+            pst.setInt(3, venda.getCmc_id_usuario());
+            pst.setString(4, venda.getCmc_forma_pagamento());
+            pst.setString(5, venda.getCmc_observacoes());
+            pst.setString(6, venda.getCmc_status());
+            pst.setDate(7, null);
+
             if (pst.executeUpdate() > 0) {
                 System.out.println("Venda inserida com sucesso.");
             }
@@ -48,13 +47,15 @@ public class cmc_vendasDAO extends DAO_Abstract {
     public void update(Object objeto) {
         cmc_vendas venda = (cmc_vendas) objeto;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "UPDATE vendas SET id_cliente=?, id_produto=?, quantidade=?, data_venda=? WHERE id_venda=?")) {
-            pst.setInt(1, venda.getCmc_id_cliente());
-            pst.setInt(2, venda.getCmc_id_produto());
-            pst.setInt(3, venda.getCmc_quantidade());
-            pst.setDate(4, new java.sql.Date(venda.getCmc_data_venda().getTime()));
-            pst.setInt(5, venda.getCmc_id_venda());
-            
+                "UPDATE vendas SET id_cliente=?, id_usuario=?, forma_pagamento=?, observacoes=?, status=?, data_venda=? WHERE id_venda=?")) {
+            pst.setInt(1, venda.getCmc_id_clinte());
+            pst.setInt(2, venda.getCmc_id_usuario());
+            pst.setString(3, venda.getCmc_forma_pagamento());
+            pst.setString(4, venda.getCmc_observacoes());
+            pst.setString(5, venda.getCmc_status());
+           pst.setDate(6, null);
+            pst.setInt(7, venda.getCmc_id_venda());
+
             if (pst.executeUpdate() > 0) {
                 System.out.println("Venda atualizada com sucesso.");
             }
@@ -68,7 +69,7 @@ public class cmc_vendasDAO extends DAO_Abstract {
         cmc_vendas venda = (cmc_vendas) objeto;
         try (PreparedStatement pst = cnt.prepareStatement("DELETE FROM vendas WHERE id_venda=?")) {
             pst.setInt(1, venda.getCmc_id_venda());
-            
+
             if (pst.executeUpdate() > 0) {
                 System.out.println("Venda excluída com sucesso.");
             }
@@ -82,14 +83,16 @@ public class cmc_vendasDAO extends DAO_Abstract {
         try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM vendas WHERE id_venda=?")) {
             pst.setInt(1, codigo);
             ResultSet rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 cmc_vendas venda = new cmc_vendas();
                 venda.setCmc_id_venda(rs.getInt("id_venda"));
-                venda.setCmc_id_cliente(rs.getInt("id_cliente"));
-                venda.setCmc_id_produto(rs.getInt("id_produto"));
-                venda.setCmc_quantidade(rs.getInt("quantidade"));
-                venda.setCmc_data_venda(rs.getDate("data_venda"));
+                venda.setCmc_id_clinte(rs.getInt("id_cliente"));
+                venda.setCmc_id_usuario(rs.getInt("id_usuario"));
+                venda.setCmc_forma_pagamento(rs.getString("forma_pagamento"));
+                venda.setCmc_observacoes(rs.getString("observacoes"));
+                venda.setCmc_status(rs.getString("status"));
+                venda.setCmc_cmc_data_venda(rs.getTimestamp("data_venda"));
                 return venda;
             }
         } catch (SQLException ex) {
@@ -103,14 +106,16 @@ public class cmc_vendasDAO extends DAO_Abstract {
         ArrayList<cmc_vendas> lista = new ArrayList<>();
         try (Statement stmt = cnt.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM vendas")) {
-            
+
             while (rs.next()) {
                 cmc_vendas venda = new cmc_vendas();
                 venda.setCmc_id_venda(rs.getInt("id_venda"));
-                venda.setCmc_id_cliente(rs.getInt("id_cliente"));
-                venda.setCmc_id_produto(rs.getInt("id_produto"));
-                venda.setCmc_quantidade(rs.getInt("quantidade"));
-                venda.setCmc_data_venda(rs.getDate("data_venda"));
+                venda.setCmc_id_clinte(rs.getInt("id_cliente"));
+                venda.setCmc_id_usuario(rs.getInt("id_usuario"));
+                venda.setCmc_forma_pagamento(rs.getString("forma_pagamento"));
+                venda.setCmc_observacoes(rs.getString("observacoes"));
+                venda.setCmc_status(rs.getString("status"));
+                venda.setCmc_cmc_data_venda(rs.getTimestamp("data_venda"));
                 lista.add(venda);
             }
         } catch (SQLException ex) {
@@ -118,7 +123,7 @@ public class cmc_vendasDAO extends DAO_Abstract {
         }
         return lista;
     }
-    
+
     public void close() {
         try {
             if (cnt != null && !cnt.isClosed()) {

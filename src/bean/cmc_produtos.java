@@ -4,8 +4,8 @@
  */
 package bean;
 
-import java.security.Timestamp;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -15,10 +15,10 @@ public class cmc_produtos {
     private int cmc_id_produtos;
     private String cmc_nome;
     private String cmc_descricao;
-    private boolean cmc_preco;
+    private double cmc_preco;
     private int cmc_quantidade;
     private String cmc_categoria;
-    private int cmc_id_fornedor;
+    private int cmc_id_fornecedor;
     private Timestamp cmc_data_cadastro;
 
     public int getCmc_id_produtos() {
@@ -45,11 +45,11 @@ public class cmc_produtos {
         this.cmc_descricao = cmc_descricao;
     }
 
-    public boolean isCmc_preco() {
+    public double getCmc_preco() {
         return cmc_preco;
     }
 
-    public void setCmc_preco(boolean cmc_preco) {
+    public void setCmc_preco(double cmc_preco) {
         this.cmc_preco = cmc_preco;
     }
 
@@ -69,12 +69,12 @@ public class cmc_produtos {
         this.cmc_categoria = cmc_categoria;
     }
 
-    public int getCmc_id_fornedor() {
-        return cmc_id_fornedor;
+    public int getCmc_id_fornecedor() {
+        return cmc_id_fornecedor;
     }
 
-    public void setCmc_id_fornedor(int cmc_id_fornedor) {
-        this.cmc_id_fornedor = cmc_id_fornedor;
+    public void setCmc_id_fornecedor(int cmc_id_fornecedor) {
+        this.cmc_id_fornecedor = cmc_id_fornecedor;
     }
 
     public Timestamp getCmc_data_cadastro() {
@@ -85,5 +85,9 @@ public class cmc_produtos {
         this.cmc_data_cadastro = cmc_data_cadastro;
     }
 
-  
+    public void setCmc_data_de_cadastro(Date sqlDate) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 }

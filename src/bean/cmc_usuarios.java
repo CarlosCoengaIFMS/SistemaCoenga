@@ -16,8 +16,8 @@ public class cmc_usuarios {
     private String cmc_apelido;
     private String cmc_cpf;
     private Date cmc_data_nascimento;
-    private String cmc_nivel;
-    private boolean cmc_ativo;
+    private int cmc_nivel;
+    private String cmc_ativo;
     private String cmc_senha;
 
     public int getCmc_id_usuario() {
@@ -60,19 +60,19 @@ public class cmc_usuarios {
         this.cmc_data_nascimento = cmc_data_nascimento;
     }
 
-    public String getCmc_nivel() {
+    public int getCmc_nivel() {
         return cmc_nivel;
     }
 
-    public void setCmc_nivel(String cmc_nivel) {
+    public void setCmc_nivel(int cmc_nivel) {
         this.cmc_nivel = cmc_nivel;
     }
 
-    public boolean isCmc_ativo() {
+    public String getCmc_ativo() {
         return cmc_ativo;
     }
 
-    public void setCmc_ativo(boolean cmc_ativo) {
+    public void setCmc_ativo(String cmc_ativo) {
         this.cmc_ativo = cmc_ativo;
     }
 
@@ -83,6 +83,8 @@ public class cmc_usuarios {
     public void setCmc_senha(String cmc_senha) {
         this.cmc_senha = cmc_senha;
     }
+
+
 
     
 }

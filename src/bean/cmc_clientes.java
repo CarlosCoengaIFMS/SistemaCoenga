@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bean;
-
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -175,5 +174,10 @@ public class cmc_clientes {
         this.cmc_status = cmc_status;
     }
 
+    public void setCmc_data_nascimento(java.sql.Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
    
 };

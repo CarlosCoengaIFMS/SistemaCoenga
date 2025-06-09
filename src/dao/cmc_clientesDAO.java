@@ -5,11 +5,15 @@
 package dao;
 
 import bean.cmc_clientes;
+import bean.cmc_clientes;
 import dao.DAO_Abstract;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
+
 
 public class cmc_clientesDAO extends DAO_Abstract {
     private Connection cnt;
@@ -37,9 +41,9 @@ public class cmc_clientesDAO extends DAO_Abstract {
             pst.setString(4, clientes.getCmc_cpf());
             pst.setString(5, clientes.getCmc_cep());
             pst.setString(6, clientes.getCmc_email());
-            pst.setDate(7, new java.sql.Date(clientes.getCmc_data_atualizacao().getTime()));
-            pst.setDate(8, new java.sql.Date(clientes.getCmc_data_criacao().getTime()));
-            pst.setDate(9, new java.sql.Date(clientes.getCmc_data_nacimento().getTime()));
+            pst.setDate(7, null);
+            pst.setDate(8, null);
+            pst.setDate(9, null);
             
             int affectedRows = pst.executeUpdate();
             
@@ -64,9 +68,9 @@ public class cmc_clientesDAO extends DAO_Abstract {
             pst.setString(3, clientes.getCmc_cpf());
             pst.setString(4, clientes.getCmc_cep());
             pst.setString(5, clientes.getCmc_email());
-            pst.setDate(6, new java.sql.Date(clientes.getCmc_data_atualizacao().getTime()));
-            pst.setDate(7, new java.sql.Date(clientes.getCmc_data_criacao().getTime()));
-            pst.setDate(8, new java.sql.Date(clientes.getCmc_data_nacimento().getTime()));
+            pst.setDate(6, null);
+            pst.setDate(7,null );
+            pst.setDate(8, null);
             pst.setInt(9, clientes.getCmc_id_clientes());
             
             int affectedRows = pst.executeUpdate();
@@ -113,8 +117,8 @@ public class cmc_clientesDAO extends DAO_Abstract {
                 clientes.setCmc_cpf(rs.getString("cmc_cpf"));
                 clientes.setCmc_cep(rs.getString("cmc_cep"));
                 clientes.setCmc_email(rs.getString("cmc_email"));
-                clientes.setCmc_data_atualizacao(rs.getDate("cmc_data_atualizacao"));
-                clientes.setCmc_data_criacao(rs.getDate("cmc_data_criacao"));
+                clientes.setCmc_data_atualizacao(rs.getTimestamp("cmc_data_atualizacao"));
+                clientes.setCmc_data_criacao(rs.getTimestamp("cmc_data_criacao"));
                 clientes.setCmc_data_nacimento(rs.getDate("cmc_data_nacimento"));
                 return clientes;
             }
@@ -138,8 +142,8 @@ public class cmc_clientesDAO extends DAO_Abstract {
                 clientes.setCmc_cpf(rs.getString("cmc_cpf"));
                 clientes.setCmc_cep(rs.getString("cmc_cep"));
                 clientes.setCmc_email(rs.getString("cmc_email"));
-                clientes.setCmc_data_atualizacao(rs.getDate("cmc_data_atualizacao"));
-                clientes.setCmc_data_criacao(rs.getDate("cmc_data_criacao"));
+                clientes.setCmc_data_atualizacao(rs.getTimestamp("cmc_data_atualizacao"));
+                clientes.setCmc_data_criacao(rs.getTimestamp("cmc_data_criacao"));
                 clientes.setCmc_data_nacimento(rs.getDate("cmc_data_nacimento"));
                 lista.add(clientes);
             }

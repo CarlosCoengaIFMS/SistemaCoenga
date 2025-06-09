@@ -37,7 +37,8 @@ public class cmc_usuariosDAO extends DAO_Abstract {
             pst.setDate(5, new java.sql.Date(usuario.getCmc_data_nascimento().getTime()));
             pst.setString(6, usuario.getCmc_senha());
             pst.setInt(7, usuario.getCmc_nivel());
-            pst.setBoolean(8, usuario.isCmc_ativo());
+            pst.setString(8, usuario.getCmc_ativo());//ativo
+           
             
             if (pst.executeUpdate() > 0) {
                 System.out.println("Usuário inserido com sucesso.");
@@ -58,7 +59,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
             pst.setDate(4, new java.sql.Date(usuario.getCmc_data_nascimento().getTime()));
             pst.setString(5, usuario.getCmc_senha());
             pst.setInt(6, usuario.getCmc_nivel());
-            pst.setBoolean(7, usuario.isCmc_ativo());
+            pst.setString(7, usuario.getCmc_ativo());
             pst.setInt(8, usuario.getCmc_id_usuario());
             
             if (pst.executeUpdate() > 0) {
@@ -98,7 +99,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
                 usuario.setCmc_data_nascimento(rs.getDate("datanascimento"));
                 usuario.setCmc_senha(rs.getString("senha"));
                 usuario.setCmc_nivel(rs.getInt("nivel"));
-                usuario.setCmc_ativo(rs.getBoolean("ativo"));
+                usuario.setCmc_ativo(rs.getString("ativo"));
                 return usuario;
             }
         } catch (SQLException ex) {
@@ -122,7 +123,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
                 usuario.setCmc_data_nascimento(rs.getDate("datanascimento"));
                 usuario.setCmc_senha(rs.getString("senha"));
                 usuario.setCmc_nivel(rs.getInt("nivel"));
-                usuario.setCmc_ativo(rs.getBoolean("ativo"));
+                usuario.setCmc_ativo(rs.getString("ativo"));
                 lista.add(usuario);
             }
         } catch (SQLException ex) {
