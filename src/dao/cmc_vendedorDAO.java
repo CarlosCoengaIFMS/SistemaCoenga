@@ -13,15 +13,27 @@ import java.util.logging.Logger;
 public class cmc_vendedorDAO extends DAO_Abstract {
     private Connection cnt;
 
+//    public cmc_vendedorDAO() {
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
+//            String user = "carlos_coenga";
+//            String pass = "carlos_coenga";
+//            this.cnt = DriverManager.getConnection(url, user, pass);
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(cmc_vendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
     public cmc_vendedorDAO() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
-            String user = "carlos_coenga";
-            String pass = "carlos_coenga";
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
+            String user = "root";
+            String pass = "16515647";
             this.cnt = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(cmc_vendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cmc_clientesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
