@@ -4,8 +4,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import view.JDlgcmc_vendedor;
-
 /**
  *
  * @author notedarckbr

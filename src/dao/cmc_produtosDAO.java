@@ -31,15 +31,14 @@ public class cmc_produtosDAO extends DAO_Abstract {
     public void insert(Object object) {
         cmc_produtos produto = (cmc_produtos) object;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "INSERT INTO cmc_produtos (cmc_id_produtos, cmc_id_fornecedor, cmc_nome, cmc_descricao, cmc_preco, cmc_categoria, cmc_quantidade, cmc_data) VALUES (?, ?, ?, ?, ?, ?, ?, NULL)")) {
+                "INSERT INTO cmc_produtos (cmc_id_produtos,  cmc_nome, cmc_descricao, cmc_preco, cmc_categoria, cmc_quantidade, cmc_data) VALUES (?, ?, ?, ?, ?, ?, ?, NULL)")) {
             
             pst.setInt(1, produto.getCmc_id_produtos());
-            pst.setInt(2, produto.getCmc_id_fornecedor());
-            pst.setString(3, produto.getCmc_nome());
-            pst.setString(4, produto.getCmc_descricao());
-            pst.setDouble(5, produto.getCmc_preco());
-            pst.setString(6, produto.getCmc_categoria());
-            pst.setInt(7, produto.getCmc_quantidade());
+            pst.setString(2, produto.getCmc_nome());
+            pst.setString(3, produto.getCmc_descricao());
+            pst.setDouble(4, produto.getCmc_preco());
+            pst.setString(5, produto.getCmc_categoria());
+            pst.setInt(6, produto.getCmc_quantidade());
             
             if (pst.executeUpdate() > 0) {
                 System.out.println("Produto inserido com sucesso.");
@@ -53,16 +52,15 @@ public class cmc_produtosDAO extends DAO_Abstract {
     public void update(Object objeto) {
         cmc_produtos produto = (cmc_produtos) objeto;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "UPDATE cmc_produtos SET cmc_id_fornecedor=?, cmc_nome=?, cmc_descricao=?, cmc_preco=?, cmc_categoria=?, cmc_quantidade=? WHERE cmc_id_produtos=?")) {
+                "UPDATE cmc_produtos SET  cmc_nome=?, cmc_descricao=?, cmc_preco=?, cmc_categoria=?, cmc_quantidade=? WHERE cmc_id_produtos=?")) {
             
-            pst.setInt(1, produto.getCmc_id_fornecedor());
-            pst.setString(2, produto.getCmc_nome());
-            pst.setString(3, produto.getCmc_descricao());
-            pst.setDouble(4, produto.getCmc_preco());
-            pst.setString(5, produto.getCmc_categoria());
-            pst.setInt(6, produto.getCmc_quantidade());
-            pst.setInt(7, produto.getCmc_id_produtos());
-            pst.setDate(8, null);
+            pst.setString(1, produto.getCmc_nome());
+            pst.setString(2, produto.getCmc_descricao());
+            pst.setDouble(3, produto.getCmc_preco());
+            pst.setString(4, produto.getCmc_categoria());
+            pst.setInt(5, produto.getCmc_quantidade());
+            pst.setInt(6, produto.getCmc_id_produtos());
+            pst.setDate(7, null);
             
             if (pst.executeUpdate() > 0) {
                 System.out.println("Produto atualizado com sucesso.");
@@ -95,7 +93,6 @@ public class cmc_produtosDAO extends DAO_Abstract {
             if (rs.next()) {
                 cmc_produtos produto = new cmc_produtos();
                 produto.setCmc_id_produtos(rs.getInt("cmc_id_produtos"));
-                produto.setCmc_id_fornecedor(rs.getInt("cmc_id_fornecedor"));
                 produto.setCmc_nome(rs.getString("cmc_nome"));
                 produto.setCmc_descricao(rs.getString("cmc_descricao"));
                 produto.setCmc_preco(rs.getDouble("cmc_preco"));
@@ -119,7 +116,6 @@ public class cmc_produtosDAO extends DAO_Abstract {
             while (rs.next()) {
                 cmc_produtos produto = new cmc_produtos();
                 produto.setCmc_id_produtos(rs.getInt("cmc_id_produtos"));
-                produto.setCmc_id_fornecedor(rs.getInt("cmc_id_fornecedor"));
                 produto.setCmc_nome(rs.getString("cmc_nome"));
                 produto.setCmc_descricao(rs.getString("cmc_descricao"));
                 produto.setCmc_preco(rs.getDouble("cmc_preco"));

@@ -26,14 +26,12 @@ public class cmc_vendasDAO extends DAO_Abstract {
     public void insert(Object object) {
         cmc_vendas venda = (cmc_vendas) object;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "INSERT INTO vendas (id_venda, id_cliente, id_usuario, forma_pagamento, observacoes, status, data_venda) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO vendas (id_venda, forma_pagamento, observacoes, status, data_venda) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
             pst.setInt(1, venda.getCmc_id_venda());
-            pst.setInt(2, venda.getCmc_id_clinte());
-            pst.setInt(3, venda.getCmc_id_usuario());
-            pst.setString(4, venda.getCmc_forma_pagamento());
-            pst.setString(5, venda.getCmc_observacoes());
-            pst.setString(6, venda.getCmc_status());
-            pst.setDate(7, null);
+            pst.setString(2, venda.getCmc_forma_pagamento());
+            pst.setString(3, venda.getCmc_observacoes());
+            pst.setString(4, venda.getCmc_status());
+            pst.setDate(5, null);
 
             if (pst.executeUpdate() > 0) {
                 System.out.println("Venda inserida com sucesso.");
@@ -48,13 +46,12 @@ public class cmc_vendasDAO extends DAO_Abstract {
         cmc_vendas venda = (cmc_vendas) objeto;
         try (PreparedStatement pst = cnt.prepareStatement(
                 "UPDATE vendas SET id_cliente=?, id_usuario=?, forma_pagamento=?, observacoes=?, status=?, data_venda=? WHERE id_venda=?")) {
-            pst.setInt(1, venda.getCmc_id_clinte());
-            pst.setInt(2, venda.getCmc_id_usuario());
-            pst.setString(3, venda.getCmc_forma_pagamento());
-            pst.setString(4, venda.getCmc_observacoes());
-            pst.setString(5, venda.getCmc_status());
-           pst.setDate(6, null);
-            pst.setInt(7, venda.getCmc_id_venda());
+            
+            pst.setString(1, venda.getCmc_forma_pagamento());
+            pst.setString(2, venda.getCmc_observacoes());
+            pst.setString(3, venda.getCmc_status());
+           pst.setDate(4, null);
+            pst.setInt(5, venda.getCmc_id_venda());
 
             if (pst.executeUpdate() > 0) {
                 System.out.println("Venda atualizada com sucesso.");
@@ -67,7 +64,7 @@ public class cmc_vendasDAO extends DAO_Abstract {
     @Override
     public void delete(Object objeto) {
         cmc_vendas venda = (cmc_vendas) objeto;
-        try (PreparedStatement pst = cnt.prepareStatement("DELETE FROM vendas WHERE id_venda=?")) {
+        try (PreparedStatement pst = cnt.prepareStatement("DELETE FROM vendas WHERE cmc_id_venda=?")) {
             pst.setInt(1, venda.getCmc_id_venda());
 
             if (pst.executeUpdate() > 0) {
@@ -80,15 +77,13 @@ public class cmc_vendasDAO extends DAO_Abstract {
 
     @Override
     public Object list(int codigo) {
-        try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM vendas WHERE id_venda=?")) {
+        try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM vendas WHERE cmc_id_venda=?")) {
             pst.setInt(1, codigo);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
                 cmc_vendas venda = new cmc_vendas();
                 venda.setCmc_id_venda(rs.getInt("id_venda"));
-                venda.setCmc_id_clinte(rs.getInt("id_cliente"));
-                venda.setCmc_id_usuario(rs.getInt("id_usuario"));
                 venda.setCmc_forma_pagamento(rs.getString("forma_pagamento"));
                 venda.setCmc_observacoes(rs.getString("observacoes"));
                 venda.setCmc_status(rs.getString("status"));
@@ -110,8 +105,6 @@ public class cmc_vendasDAO extends DAO_Abstract {
             while (rs.next()) {
                 cmc_vendas venda = new cmc_vendas();
                 venda.setCmc_id_venda(rs.getInt("id_venda"));
-                venda.setCmc_id_clinte(rs.getInt("id_cliente"));
-                venda.setCmc_id_usuario(rs.getInt("id_usuario"));
                 venda.setCmc_forma_pagamento(rs.getString("forma_pagamento"));
                 venda.setCmc_observacoes(rs.getString("observacoes"));
                 venda.setCmc_status(rs.getString("status"));

@@ -22,7 +22,7 @@ public class cmc_compras {
         return cmc_id_compra;
     }
 
-    public void setCmc_fk_compra(int cmc_fk_compra) {
+    public void setCmc_id_compra(int cmc_id_compra) {
         this.cmc_id_compra = cmc_id_compra;
     }
 
@@ -58,4 +58,5 @@ public class cmc_compras {
         this.cmc_status = cmc_status;
     }
 
+    
 }

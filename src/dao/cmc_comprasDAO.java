@@ -30,15 +30,13 @@ public class cmc_comprasDAO extends DAO_Abstract {
     public void insert(Object object) {
        cmc_compras compra = (cmc_compras) object;
     try (PreparedStatement pst = cnt.prepareStatement(
-            "INSERT INTO compra (id_compra, id_fornecedor, id_produto, quantidade, data_compra, status, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+            "INSERT INTO compra (id_compra, quantidade, data_compra, status, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
         pst.setInt(1, compra.getCmc_id_compra());
-        pst.setInt(2, compra.getCmc_id_fornecedor());
-        pst.setInt(3, compra.getCmc_id_produto());
-        pst.setInt(4, compra.getCmc_quantidade());
-        pst.setDate(5,null); // data atual
-        pst.setString(6, compra.getCmc_status());
-        pst.setDouble(7, compra.getCmc_valor_total()); // ou setBigDecimal
+        pst.setInt(2, compra.getCmc_quantidade());
+        pst.setDate(3,null); // data atual
+        pst.setString(4, compra.getCmc_status());
+        pst.setDouble(5, compra.getCmc_valor_total()); // ou setBigDecimal
 
         if (pst.executeUpdate() > 0) {
             System.out.println("Compra inserida com sucesso.");
@@ -52,15 +50,13 @@ public class cmc_comprasDAO extends DAO_Abstract {
     public void update(Object objeto) {
     cmc_compras compra = (cmc_compras) objeto;
     try (PreparedStatement pst = cnt.prepareStatement(
-            "UPDATE compra SET id_fornecedor=?, id_produto=?, quantidade=?, data_compra=?, status=?, valor_total=? WHERE id_compra=?")) {
+            "UPDATE compra SET  quantidade=?, data_compra=?, status=?, valor_total=? WHERE id_compra=?")) {
 
-        pst.setInt(1, compra.getCmc_id_fornecedor());
-        pst.setInt(2, compra.getCmc_id_produto());
-        pst.setInt(3, compra.getCmc_quantidade());
-        pst.setDate(4, new java.sql.Date(System.currentTimeMillis())); // data atual
-        pst.setString(5, compra.getCmc_status());
-        pst.setDouble(6, compra.getCmc_valor_total());
-        pst.setInt(7, compra.getCmc_id_compra());
+        pst.setInt(1, compra.getCmc_quantidade());
+        pst.setDate(2, new java.sql.Date(System.currentTimeMillis())); // data atual
+        pst.setString(3, compra.getCmc_status());
+        pst.setDouble(4, compra.getCmc_valor_total());
+        pst.setInt(5, compra.getCmc_id_compra());
 
         if (pst.executeUpdate() > 0) {
             System.out.println("Compra atualizada com sucesso.");
@@ -85,15 +81,13 @@ public class cmc_comprasDAO extends DAO_Abstract {
     }
        @Override
 public Object list(int codigo) {
-    try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM compra WHERE id_compra=?")) {
+    try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM compra WHERE cmc_id_compra=?")) {
         pst.setInt(1, codigo);
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
             cmc_compras compra = new cmc_compras();
             compra.setCmc_id_compra(rs.getInt("id_compra"));
-            compra.setCmc_id_fornecedor(rs.getInt("id_fornecedor"));
-            compra.setCmc_id_produto(rs.getInt("id_produto"));
             compra.setCmc_quantidade(rs.getInt("quantidade"));
             compra.setCmc_data_compra(rs.getDate("data_compra"));
             compra.setCmc_status(rs.getString("status"));
@@ -116,8 +110,6 @@ public ArrayList<cmc_compras> listAll() {
         while (rs.next()) {
             cmc_compras compra = new cmc_compras();
             compra.setCmc_id_compra(rs.getInt("id_compra"));
-            compra.setCmc_id_fornecedor(rs.getInt("id_fornecedor"));
-            compra.setCmc_id_produto(rs.getInt("id_produto"));
             compra.setCmc_quantidade(rs.getInt("quantidade"));
             compra.setCmc_data_compra(rs.getDate("data_compra"));
             compra.setCmc_status(rs.getString("status"));

@@ -281,33 +281,36 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        // TODO add your handling code here:
         cmc_produtos produto = new cmc_produtos();
+
+// Define os dados do formulário
         int codigo = Integer.parseInt(jTxtcmc_id_produtos.getText());
-        int codi = Integer.parseInt(jTxtcmc_id_fornecedor.getText());
         produto.setCmc_id_produtos(codigo);
         produto.setCmc_nome(jTxtcmc_nome.getText());
         produto.setCmc_descricao(jTxtcmc_descricao.getText());
 
-// Se jTxtcmc_preço for numérico com ponto (ex: "19.99")
+// Preço com ponto (ex: "19.99")
         produto.setCmc_preco(Double.parseDouble(jTxtcmc_preço.getText()));
 
+// Categoria e quantidade
         produto.setCmc_categoria(jFmtcmc_categoria.getText());
-        produto.setCmc_id_fornecedor(codi);
         produto.setCmc_quantidade(Integer.parseInt(jFmtcmc_quantidade.getText()));
 
-// Para data de cadastro
+// Converte data para SQL
         try {
-            java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_cadastro.getText());
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            produto.setCmc_data_de_cadastro(sqlDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            produto.setCmc_data_de_cadastro(null); // Ou tratar como necessário
-        }
+    java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_cadastro.getText());
+    java.sql.Timestamp timestamp = new java.sql.Timestamp(utilDate.getTime());
+    produto.setCmc_data_cadastro(timestamp);
+} catch (ParseException e) {
+    e.printStackTrace();
+    produto.setCmc_data_cadastro(null); // ou trate com valor padrão
+}
 
+// Insere no banco
         cmc_produtosDAO produtosDao = new cmc_produtosDAO();
         produtosDao.insert(produto);
+
+// Desativa e limpa os campos
         Habilitar(false);
         limpar();
 
@@ -320,43 +323,17 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
-        if (opcao == JOptionPane.YES_OPTION) {
-            cmc_produtos produto = new cmc_produtos();
-            int codigo = Integer.parseInt(jTxtcmc_id_produtos.getText());
-            produto.setCmc_id_produtos(codigo);
-            produto.setCmc_nome(jTxtcmc_nome.getText());
-            produto.setCmc_descricao(jTxtcmc_descricao.getText());
+     int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-            try {
-                produto.setCmc_preco(Double.parseDouble(jTxtcmc_preço.getText()));
-            } catch (NumberFormatException e) {
-                produto.setCmc_preco(0.0);
-            }
+if (opcao == JOptionPane.YES_OPTION) {
+    cmc_produtos produto = new cmc_produtos();
+    produto.setCmc_id_produtos(Integer.parseInt(jTxtcmc_id_produtos.getText()));
 
-            produto.setCmc_categoria(jFmtcmc_categoria.getText());
-            produto.setCmc_id_fornecedor(Integer.parseInt(jTxtcmc_id_fornecedor.getText()));
+    cmc_produtosDAO produtosDao = new cmc_produtosDAO();
+    produtosDao.delete(produto);
 
-            try {
-                produto.setCmc_quantidade(Integer.parseInt(jFmtcmc_quantidade.getText()));
-            } catch (NumberFormatException e) {
-                produto.setCmc_quantidade(0);
-            }
-
-            try {
-                java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_cadastro.getText());
-                produto.setCmc_data_de_cadastro(new java.sql.Date(utilDate.getTime()));
-            } catch (Exception e) {
-                produto.setCmc_data_de_cadastro(null);
-            }
-
-            // DAO
-            cmc_produtosDAO produtosDao = new cmc_produtosDAO();
-            produtosDao.delete(produto);
-
-            limpar();
-        }
-
+    limpar();
+}
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -377,8 +354,7 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
                     jTxtcmc_descricao.setText(produto.getCmc_descricao());
                     jTxtcmc_preço.setText(String.valueOf(produto.getCmc_preco()));
                     jFmtcmc_categoria.setText(produto.getCmc_categoria());
-                    jTxtcmc_id_fornecedor.setText(String.valueOf(produto.getCmc_id_fornecedor())); // <- corrigido aqui
-                    jFmtcmc_quantidade.setText(String.valueOf(produto.getCmc_quantidade()));
+                    jFmtcmc_quantidade.setText(String.valueOf((char) produto.getCmc_quantidade()));
 
                     // Data de cadastro
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
