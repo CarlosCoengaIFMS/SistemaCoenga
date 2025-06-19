@@ -6,7 +6,10 @@ package view;
 
 import bean.cmc_clientes;
 import dao.cmc_clientesDAO;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +29,8 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         Habilitar(false);
 
     }
+    
+    
 
     public void Habilitar(boolean value) {
         jTxtcmc_bairro.setEnabled(value);

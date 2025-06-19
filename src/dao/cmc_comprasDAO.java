@@ -36,7 +36,7 @@ public class cmc_comprasDAO extends DAO_Abstract {
         pst.setInt(2, compra.getCmc_id_fornecedor());
         pst.setInt(3, compra.getCmc_id_produto());
         pst.setInt(4, compra.getCmc_quantidade());
-        pst.setDate(5, new java.sql.Date(System.currentTimeMillis())); // data atual
+        pst.setDate(5,null); // data atual
         pst.setString(6, compra.getCmc_status());
         pst.setDouble(7, compra.getCmc_valor_total()); // ou setBigDecimal
 

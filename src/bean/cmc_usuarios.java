@@ -11,6 +11,7 @@ import java.util.Date;
  * @author notedarckbr
  */
 public class cmc_usuarios {
+
     private int cmc_id_usuario;
     private String cmc_nome;
     private String cmc_apelido;
@@ -84,7 +85,4 @@ public class cmc_usuarios {
         this.cmc_senha = cmc_senha;
     }
 
-
-
-    
 }

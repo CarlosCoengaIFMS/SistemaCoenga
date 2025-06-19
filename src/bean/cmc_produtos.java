@@ -12,13 +12,13 @@ import java.sql.Timestamp;
  * @author notedarckbr
  */
 public class cmc_produtos {
+
     private int cmc_id_produtos;
     private String cmc_nome;
     private String cmc_descricao;
     private double cmc_preco;
     private int cmc_quantidade;
     private String cmc_categoria;
-    private int cmc_id_fornecedor;
     private Timestamp cmc_data_cadastro;
 
     public int getCmc_id_produtos() {
@@ -69,14 +69,6 @@ public class cmc_produtos {
         this.cmc_categoria = cmc_categoria;
     }
 
-    public int getCmc_id_fornecedor() {
-        return cmc_id_fornecedor;
-    }
-
-    public void setCmc_id_fornecedor(int cmc_id_fornecedor) {
-        this.cmc_id_fornecedor = cmc_id_fornecedor;
-    }
-
     public Timestamp getCmc_data_cadastro() {
         return cmc_data_cadastro;
     }
@@ -85,9 +77,4 @@ public class cmc_produtos {
         this.cmc_data_cadastro = cmc_data_cadastro;
     }
 
-    public void setCmc_data_de_cadastro(Date sqlDate) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
 }

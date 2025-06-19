@@ -11,9 +11,8 @@ import java.util.Date;
  * @author notedarckbr
  */
 public class cmc_compras {
+
     private int cmc_id_compra;
-    private int cmc_id_fornecedor;
-    private int cmc_id_produto;
     private int cmc_quantidade;
     private double cmc_valor_total;
     private Date cmc_data_compra;
@@ -23,24 +22,8 @@ public class cmc_compras {
         return cmc_id_compra;
     }
 
-    public void setCmc_id_compra(int cmc_id_compra) {
+    public void setCmc_fk_compra(int cmc_fk_compra) {
         this.cmc_id_compra = cmc_id_compra;
-    }
-
-    public int getCmc_id_fornecedor() {
-        return cmc_id_fornecedor;
-    }
-
-    public void setCmc_id_fornecedor(int cmc_id_fornecedor) {
-        this.cmc_id_fornecedor = cmc_id_fornecedor;
-    }
-
-    public int getCmc_id_produto() {
-        return cmc_id_produto;
-    }
-
-    public void setCmc_id_produto(int cmc_id_produto) {
-        this.cmc_id_produto = cmc_id_produto;
     }
 
     public int getCmc_quantidade() {
@@ -74,6 +57,5 @@ public class cmc_compras {
     public void setCmc_status(String cmc_status) {
         this.cmc_status = cmc_status;
     }
-   
-    
+
 }

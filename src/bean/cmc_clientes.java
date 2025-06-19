@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bean;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -11,7 +12,8 @@ import java.util.Date;
  * @author notedarckbr
  */
 public class cmc_clientes {
-    private  int cmc_id_clientes;
+
+    private int cmc_id_clientes;
     private String cmc_nome;
     private String cmc_email;
     private String cmc_telefone;
@@ -178,6 +180,4 @@ public class cmc_clientes {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-  
-   
 };
