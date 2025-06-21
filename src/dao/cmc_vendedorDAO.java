@@ -27,7 +27,7 @@ public class cmc_vendedorDAO extends DAO_Abstract {
     
     public cmc_vendedorDAO() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
             String user = "root";
             String pass = "16515647";

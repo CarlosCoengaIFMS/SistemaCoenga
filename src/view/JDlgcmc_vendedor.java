@@ -23,12 +23,14 @@ public class JDlgcmc_vendedor extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
+        Habilitar(Boolean.FALSE);
     }
 public void Habilitar(boolean value){
     jTxtcmc_id_vendedor.setEnabled(value);
     jTxtcmc_nome.setEnabled(value);
     jTxtcmc_usuario.setEnabled(value);
     jPwfcmc_senha.setEnabled(value);
+    jTxtcmc_email.setEnabled(value);
     
     jFmtcmc_cpf.setEnabled(value);
     jFmtcmc_data_cadastro.setEnabled(value);
@@ -41,7 +43,7 @@ public void Habilitar(boolean value){
     jBtnCancelar.setEnabled(value);
     jBtnConfirmar.setEnabled(value);
     jBtnExcluir.setEnabled(!value);
-    jBtnIncluir.setEnabled(!value);
+    jBtnIncluir6.setEnabled(!value);
     jBtnPesquisar.setEnabled(!value);
 }
  public void limpar(){
@@ -300,7 +302,7 @@ public void Habilitar(boolean value){
             cmc_vendedorDAO dao = new cmc_vendedorDAO();
             dao.delete(vendedor);
             limpar();
-            Habilitar(false);
+            Habilitar(Boolean.FALSE);
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -325,7 +327,7 @@ public void Habilitar(boolean value){
     cmc_vendedorDAO vendedorDao = new cmc_vendedorDAO();
     vendedorDao.insert(vendedor);
 
-    Habilitar(false);
+    Habilitar(Boolean.FALSE);
     limpar();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 

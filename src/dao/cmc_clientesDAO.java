@@ -34,7 +34,7 @@ public class cmc_clientesDAO extends DAO_Abstract {
      public cmc_clientesDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
+            String url = "jdbc:mysql://127.0.0.1:3306/db_carlos_coenga";
             String user = "root";
             String pass = "16515647";
             this.cnt = DriverManager.getConnection(url, user, pass);

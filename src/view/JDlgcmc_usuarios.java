@@ -273,15 +273,19 @@ public void Habilitar(boolean value){
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:]
-         cmc_usuarios usuarios = new cmc_usuarios();
-        int codigo = Integer.parseInt(jTxtid_usuario.getText());
-        usuarios.setCmc_id_usuario(codigo);
+        cmc_usuarios usuarios = new cmc_usuarios();
+
+if (!jTxtid_usuario.getText().trim().isEmpty()) {
+    int codigo = Integer.parseInt(jTxtid_usuario.getText());
+    usuarios.setCmc_id_usuario(codigo); // Só define se não estiver vazio
+}
         usuarios.setCmc_nome(jTxtcmc_nome.getText() );
         usuarios.setCmc_apelido(jTxtcmc_apelido.getText());
         usuarios.setCmc_cpf(jFmtcmc_cpf.getText());
         usuarios.setCmc_data_nascimento(null);
         usuarios.setCmc_senha(jPwfcmc_senha.getText());
         usuarios.setCmc_nivel(jCbocmc_nivel.getSelectedIndex());
+        
         if(jChbcmc_ativo.isSelected() == true){
                 usuarios.setCmc_ativo("S");
         }else{

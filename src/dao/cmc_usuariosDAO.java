@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class cmc_usuariosDAO extends DAO_Abstract {
+
     private Connection cnt;
 
 //    public cmc_usuariosDAO() {
@@ -25,36 +26,37 @@ public class cmc_usuariosDAO extends DAO_Abstract {
 //            Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-    
     public cmc_usuariosDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
-            String user = "root";
-            String pass = "16515647";
-            this.cnt = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(cmc_clientesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            String url, user, pass;
+            url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
+            user = "root";
+            pass = "16515647";
+            cnt = DriverManager.getConnection(url, user, pass);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void insert(Object object) {
         cmc_usuarios usuario = (cmc_usuarios) object;
-        try (PreparedStatement pst = cnt.prepareStatement("INSERT INTO usuarios VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-            pst.setInt(1, usuario.getCmc_id_usuario());
-            pst.setString(2, usuario.getCmc_nome());
-            pst.setString(3, usuario.getCmc_apelido());
-            pst.setString(4, usuario.getCmc_cpf());
-            pst.setDate(5, new java.sql.Date(usuario.getCmc_data_nascimento().getTime()));
-            pst.setString(6, usuario.getCmc_senha());
-            pst.setInt(7, usuario.getCmc_nivel());
-            pst.setString(8, usuario.getCmc_ativo());//ativo
-           
-            
-            if (pst.executeUpdate() > 0) {
-                System.out.println("Usuário inserido com sucesso.");
-            }
+        try {
+                PreparedStatement pst = cnt.prepareStatement("INSERT INTO cmc_usuarios VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+
+            pst.setString(1, usuario.getCmc_nome());
+            pst.setString(2, usuario.getCmc_apelido());
+            pst.setString(3, usuario.getCmc_cpf());
+            pst.setDate(4, null);
+            pst.setInt(5, usuario.getCmc_nivel()); // enum
+            pst.setString(6,usuario.getCmc_ativo()); // tinyint(1)
+            pst.setString(7, usuario.getCmc_senha());
+
+            pst.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,12 +70,12 @@ public class cmc_usuariosDAO extends DAO_Abstract {
             pst.setString(1, usuario.getCmc_nome());
             pst.setString(2, usuario.getCmc_apelido());
             pst.setString(3, usuario.getCmc_cpf());
-            pst.setDate(4, new java.sql.Date(usuario.getCmc_data_nascimento().getTime()));
+            pst.setDate(4, null);
             pst.setString(5, usuario.getCmc_senha());
             pst.setInt(6, usuario.getCmc_nivel());
             pst.setString(7, usuario.getCmc_ativo());
             pst.setInt(8, usuario.getCmc_id_usuario());
-            
+
             if (pst.executeUpdate() > 0) {
                 System.out.println("Usuário atualizado com sucesso.");
             }
@@ -87,7 +89,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
         cmc_usuarios usuario = (cmc_usuarios) objeto;
         try (PreparedStatement pst = cnt.prepareStatement("DELETE FROM usuarios WHERE id_usuario=?")) {
             pst.setInt(1, usuario.getCmc_id_usuario());
-            
+
             if (pst.executeUpdate() > 0) {
                 System.out.println("Usuário excluído com sucesso.");
             }
@@ -101,7 +103,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
         try (PreparedStatement pst = cnt.prepareStatement("SELECT * FROM usuarios WHERE id_usuario=?")) {
             pst.setInt(1, codigo);
             ResultSet rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 cmc_usuarios usuario = new cmc_usuarios();
                 usuario.setCmc_id_usuario(rs.getInt("id_usuario"));
@@ -123,9 +125,8 @@ public class cmc_usuariosDAO extends DAO_Abstract {
     @Override
     public ArrayList<cmc_usuarios> listAll() {
         ArrayList<cmc_usuarios> lista = new ArrayList<>();
-        try (Statement stmt = cnt.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) {
-            
+        try (Statement stmt = cnt.createStatement(); ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) {
+
             while (rs.next()) {
                 cmc_usuarios usuario = new cmc_usuarios();
                 usuario.setCmc_id_usuario(rs.getInt("id_usuario"));
@@ -143,7 +144,7 @@ public class cmc_usuariosDAO extends DAO_Abstract {
         }
         return lista;
     }
-    
+
     public void close() {
         try {
             if (cnt != null && !cnt.isClosed()) {
@@ -152,5 +153,19 @@ public class cmc_usuariosDAO extends DAO_Abstract {
         } catch (SQLException ex) {
             Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+public static void main(String[] args) {
+        cmc_usuarios usuarios = new cmc_usuarios();
+        usuarios.setCmc_id_usuario(200);
+        usuarios.setCmc_nome("marcos");
+        usuarios.setCmc_apelido("mpv");
+        usuarios.setCmc_cpf("456.546.879-87");
+        usuarios.setCmc_data_nascimento(null);
+        usuarios.setCmc_senha("123");
+        usuarios.setCmc_nivel(1);
+        usuarios.setCmc_ativo("S");
+        cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
+        usuariosDao.insert(usuarios);
+        System.out.println("executou com sucesso.");
     }
 }
