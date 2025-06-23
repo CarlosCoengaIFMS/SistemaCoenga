@@ -167,6 +167,11 @@ public void Habilitar(boolean value){
         jPwfcmc_senha.setText("jPasswordField1jPwfjPwfjPwfjPwfjPwf");
 
         jCbocmc_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Vendedor", "Cliente"}));
+        jCbocmc_nivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbocmc_nivelActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("nível");
 
@@ -273,29 +278,42 @@ public void Habilitar(boolean value){
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:]
-        cmc_usuarios usuarios = new cmc_usuarios();
+    // Criação do objeto usuario
+cmc_usuarios usuarios = new cmc_usuarios();
 
+// Verificando se o campo de id_usuario não está vazio e definindo o id
 if (!jTxtid_usuario.getText().trim().isEmpty()) {
     int codigo = Integer.parseInt(jTxtid_usuario.getText());
     usuarios.setCmc_id_usuario(codigo); // Só define se não estiver vazio
 }
-        usuarios.setCmc_nome(jTxtcmc_nome.getText() );
-        usuarios.setCmc_apelido(jTxtcmc_apelido.getText());
-        usuarios.setCmc_cpf(jFmtcmc_cpf.getText());
-        usuarios.setCmc_data_nascimento(null);
-        usuarios.setCmc_senha(jPwfcmc_senha.getText());
-        usuarios.setCmc_nivel(jCbocmc_nivel.getSelectedIndex());
-        
-        if(jChbcmc_ativo.isSelected() == true){
-                usuarios.setCmc_ativo("S");
-        }else{
-        usuarios.setCmc_ativo("N");
-        }
 
-        cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
-        usuariosDao.insert(usuarios);
-        Habilitar(Boolean.FALSE);
-        limpar();
+// Definindo outros campos
+usuarios.setCmc_nome(jTxtcmc_nome.getText());
+usuarios.setCmc_apelido(jTxtcmc_apelido.getText());
+usuarios.setCmc_cpf(jFmtcmc_cpf.getText());
+usuarios.setCmc_data_nascimento(null); // Assumindo que a data é nula por enquanto
+usuarios.setCmc_senha(jPwfcmc_senha.getText());
+
+// Definindo o nível como número
+usuarios.setCmc_nivel(jCbocmc_nivel.getSelectedIndex()); // Retorna um número que representa o índice
+
+// Definindo o status ativo
+if (jChbcmc_ativo.isSelected()) {
+    usuarios.setCmc_ativo("S"); // "S" para ativo
+} else {
+    usuarios.setCmc_ativo("N"); // "N" para inativo
+}
+
+// Inserindo no banco de dados
+cmc_usuariosDAO usuariosDao = new cmc_usuariosDAO();
+usuariosDao.insert(usuarios);
+
+// Desabilitar campos após inserção
+Habilitar(Boolean.FALSE);
+
+// Limpar campos após inserção
+limpar();
+
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -363,6 +381,10 @@ if(opcao == JOptionPane.YES_OPTION){
         // TODO add your handling code here:
           Habilitar(Boolean.FALSE);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void jCbocmc_nivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbocmc_nivelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCbocmc_nivelActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,35 +15,24 @@ import java.util.logging.Logger;
 public class cmc_produtosDAO extends DAO_Abstract {
     private Connection cnt;
 
-//    public cmc_produtosDAO() {
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
-//            String user = "carlos_coenga";
-//            String pass = "carlos_coenga";
-//            this.cnt = DriverManager.getConnection(url, user, pass);
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(cmc_produtosDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    
     public cmc_produtosDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
-            String user = "root";
-            String pass = "16515647";
+            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
+            String user = "carlos_coenga";
+            String pass = "carlos_coenga";
             this.cnt = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(cmc_clientesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cmc_produtosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
     @Override
     public void insert(Object object) {
         cmc_produtos produto = (cmc_produtos) object;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "INSERT INTO cmc_produtos (cmc_id_produtos,  cmc_nome, cmc_descricao, cmc_preco, cmc_categoria, cmc_quantidade, cmc_data) VALUES (?, ?, ?, ?, ?, ?, ?, NULL)")) {
+                "INSERT INTO cmc_produtos (cmc_id_produtos,  cmc_nome, cmc_descricao, cmc_preco, cmc_categoria, cmc_quantidade, cmc_data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
             
             pst.setInt(1, produto.getCmc_id_produtos());
             pst.setString(2, produto.getCmc_nome());
@@ -51,6 +40,7 @@ public class cmc_produtosDAO extends DAO_Abstract {
             pst.setDouble(4, produto.getCmc_preco());
             pst.setString(5, produto.getCmc_categoria());
             pst.setInt(6, produto.getCmc_quantidade());
+            pst.setDate(7, null);
             
             if (pst.executeUpdate() > 0) {
                 System.out.println("Produto inserido com sucesso.");
@@ -64,15 +54,16 @@ public class cmc_produtosDAO extends DAO_Abstract {
     public void update(Object objeto) {
         cmc_produtos produto = (cmc_produtos) objeto;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "UPDATE cmc_produtos SET  cmc_nome=?, cmc_descricao=?, cmc_preco=?, cmc_categoria=?, cmc_quantidade=? WHERE cmc_id_produtos=?")) {
+                "UPDATE cmc_produtos SET  cmc_nome=?, cmc_descricao=?, cmc_preco=?, cmc_categoria=?, cmc_quantidade=?, cmc_data_cadastro=? WHERE cmc_id_produtos=?")) {
             
             pst.setString(1, produto.getCmc_nome());
             pst.setString(2, produto.getCmc_descricao());
             pst.setDouble(3, produto.getCmc_preco());
             pst.setString(4, produto.getCmc_categoria());
             pst.setInt(5, produto.getCmc_quantidade());
-            pst.setInt(6, produto.getCmc_id_produtos());
-            pst.setDate(7, null);
+            pst.setDate(6, null);
+            pst.setInt(7, produto.getCmc_id_produtos());
+            
             
             if (pst.executeUpdate() > 0) {
                 System.out.println("Produto atualizado com sucesso.");

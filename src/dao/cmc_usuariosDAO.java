@@ -15,28 +15,14 @@ public class cmc_usuariosDAO extends DAO_Abstract {
 
     private Connection cnt;
 
-//    public cmc_usuariosDAO() {
-//        try {
-//             Class.forName("com.mysql.jdbc.Driver");
-//            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
-//            String user = "carlos_coenga";
-//            String pass = "carlos_coenga";
-//            this.cnt = DriverManager.getConnection(url, user, pass);
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     public cmc_usuariosDAO() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url, user, pass;
-            url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
-            user = "root";
-            pass = "16515647";
-            cnt = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+             Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
+            String user = "carlos_coenga";
+            String pass = "carlos_coenga";
+            this.cnt = DriverManager.getConnection(url, user, pass);
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(cmc_usuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -45,15 +31,16 @@ public class cmc_usuariosDAO extends DAO_Abstract {
     public void insert(Object object) {
         cmc_usuarios usuario = (cmc_usuarios) object;
         try {
-                PreparedStatement pst = cnt.prepareStatement("INSERT INTO cmc_usuarios VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+                PreparedStatement pst = cnt.prepareStatement("INSERT INTO cmc_usuarios (cmc_id_usuario, cmc_nome, cmc_apelido, cmc_cpf, cmc_data_nascimento, cmc_nivel, cmc_ativo, cmc_senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-            pst.setString(1, usuario.getCmc_nome());
-            pst.setString(2, usuario.getCmc_apelido());
-            pst.setString(3, usuario.getCmc_cpf());
-            pst.setDate(4, null);
-            pst.setInt(5, usuario.getCmc_nivel()); // enum
-            pst.setString(6,usuario.getCmc_ativo()); // tinyint(1)
-            pst.setString(7, usuario.getCmc_senha());
+             pst.setInt(1, usuario.getCmc_id_usuario());
+            pst.setString(2, usuario.getCmc_nome());
+            pst.setString(3, usuario.getCmc_apelido());
+            pst.setString(4, usuario.getCmc_cpf());
+            pst.setDate(5, null);
+            pst.setString(6, String.valueOf(usuario.getCmc_nivel())); // enum
+            pst.setString(7, usuario.getCmc_ativo());//ativo
+            pst.setString(8, usuario.getCmc_senha());
 
             pst.executeUpdate();
 

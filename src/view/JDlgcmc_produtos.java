@@ -19,6 +19,9 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
     /**
      * Creates new form JDlgProdutos
      */
+    
+    boolean incluir = false;
+    
     public JDlgcmc_produtos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -41,7 +44,6 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
         jTxtcmc_id_produtos.setEnabled(value);
         jFmtcmc_categoria.setEnabled(value);
         jFmtcmc_data_de_cadastro.setEnabled(value);
-        jTxtcmc_id_fornecedor.setEnabled(value);
         jFmtcmc_quantidade.setEnabled(value);
     }
 
@@ -52,7 +54,6 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
         jFmtcmc_categoria.setText("");
         jFmtcmc_data_de_cadastro.setText("");
         jFmtcmc_quantidade.setText("");
-        jTxtcmc_id_fornecedor.setText("");
         jTxtcmc_descricao.setText("");
     }
 
@@ -80,13 +81,11 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
         jFmtcmc_quantidade = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jFmtcmc_categoria = new javax.swing.JFormattedTextField();
         jFmtcmc_data_de_cadastro = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTxtcmc_descricao = new javax.swing.JTextField();
-        jTxtcmc_id_fornecedor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -148,8 +147,6 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
 
         jLabel5.setText("categoria");
 
-        jLabel6.setText("Fornecedor");
-
         jFmtcmc_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtcmc_categoriaActionPerformed(evt);
@@ -171,13 +168,13 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jBtnIncluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBtnAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBtnIncluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnConfirmar)
@@ -185,37 +182,37 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
                         .addComponent(jBtnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(jBtnPesquisar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTxtcmc_id_fornecedor, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jFmtcmc_data_de_cadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTxtcmc_nome, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jTxtcmc_id_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))
-                            .addGap(49, 49, 49)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jTxtcmc_preço, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFmtcmc_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jFmtcmc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTxtcmc_descricao, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jFmtcmc_data_de_cadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtcmc_nome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTxtcmc_id_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTxtcmc_preço, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFmtcmc_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jFmtcmc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtcmc_descricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -239,11 +236,7 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFmtcmc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtcmc_id_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFmtcmc_data_de_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,7 +244,7 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTxtcmc_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluir)
                     .addComponent(jBtnAlterar)
@@ -269,6 +262,7 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
         // TODO add your handling code here:
         Habilitar(true);
         limpar();
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jFmtcmc_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtcmc_categoriaActionPerformed
@@ -278,6 +272,7 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Habilitar(true);
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -298,17 +293,23 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
 
 // Converte data para SQL
         try {
-    java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_cadastro.getText());
-    java.sql.Timestamp timestamp = new java.sql.Timestamp(utilDate.getTime());
-    produto.setCmc_data_cadastro(timestamp);
-} catch (ParseException e) {
-    e.printStackTrace();
-    produto.setCmc_data_cadastro(null); // ou trate com valor padrão
-}
+            java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_cadastro.getText());
+            java.sql.Timestamp timestamp = new java.sql.Timestamp(utilDate.getTime());
+            produto.setCmc_data_cadastro(timestamp);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            produto.setCmc_data_cadastro(null); // ou trate com valor padrão
+        }
 
 // Insere no banco
         cmc_produtosDAO produtosDao = new cmc_produtosDAO();
-        produtosDao.insert(produto);
+        
+        if (incluir == true) {
+            produtosDao.insert(produto);
+        }else{
+        produtosDao.update(produto);
+        }
+        
 
 // Desativa e limpa os campos
         Habilitar(false);
@@ -323,49 +324,49 @@ public class JDlgcmc_produtos extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-     int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-if (opcao == JOptionPane.YES_OPTION) {
-    cmc_produtos produto = new cmc_produtos();
-    produto.setCmc_id_produtos(Integer.parseInt(jTxtcmc_id_produtos.getText()));
+        if (opcao == JOptionPane.YES_OPTION) {
+            cmc_produtos produto = new cmc_produtos();
+            produto.setCmc_id_produtos(Integer.parseInt(jTxtcmc_id_produtos.getText()));
 
-    cmc_produtosDAO produtosDao = new cmc_produtosDAO();
-    produtosDao.delete(produto);
+            cmc_produtosDAO produtosDao = new cmc_produtosDAO();
+            produtosDao.delete(produto);
 
-    limpar();
-}
+            limpar();
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
         String id = JOptionPane.showInputDialog(null, "Entre com o código do produto:");
-        if (id != null && !id.trim().isEmpty()) {
-            try {
-                int codigo = Integer.parseInt(id);
-                int idFornecedor = Integer.parseInt(jTxtcmc_id_fornecedor.getText());
-                cmc_produtosDAO produtoDao = new cmc_produtosDAO();
-                cmc_produtos produto = (cmc_produtos) produtoDao.list(codigo);
+if (id != null && !id.trim().isEmpty()) {
+    try {
+        int codigo = Integer.parseInt(id);
+        cmc_produtosDAO produtoDao = new cmc_produtosDAO();
+        cmc_produtos produto = (cmc_produtos) produtoDao.list(codigo);
 
-                if (produto == null) {
-                    JOptionPane.showMessageDialog(null, "Código não existe");
-                } else {
-                    jTxtcmc_id_produtos.setText(id);
-                    jTxtcmc_nome.setText(produto.getCmc_nome());
-                    jTxtcmc_descricao.setText(produto.getCmc_descricao());
-                    jTxtcmc_preço.setText(String.valueOf(produto.getCmc_preco()));
-                    jFmtcmc_categoria.setText(produto.getCmc_categoria());
-                    jFmtcmc_quantidade.setText(String.valueOf((char) produto.getCmc_quantidade()));
+        if (produto == null) {
+            JOptionPane.showMessageDialog(null, "Código não existe");
+        } else {
+            jTxtcmc_id_produtos.setText(id);
+            jTxtcmc_nome.setText(produto.getCmc_nome());
+            jTxtcmc_descricao.setText(produto.getCmc_descricao());
+            jTxtcmc_preço.setText(String.valueOf(produto.getCmc_preco()));
+            jFmtcmc_categoria.setText(produto.getCmc_categoria());
+            jFmtcmc_quantidade.setText(String.valueOf(produto.getCmc_quantidade()));
 
-                    // Data de cadastro
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    if (produto.getCmc_data_cadastro() != null) {
-                        jFmtcmc_data_de_cadastro.setText(sdf.format(produto.getCmc_data_cadastro()));
-                    }
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Código inválido!");
+            // Data de cadastro formatada
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            if (produto.getCmc_data_cadastro() != null) {
+                jFmtcmc_data_de_cadastro.setText(sdf.format(produto.getCmc_data_cadastro()));
             }
         }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Código inválido!");
+    }
+}
+
 
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
@@ -427,11 +428,9 @@ if (opcao == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTxtcmc_descricao;
-    private javax.swing.JTextField jTxtcmc_id_fornecedor;
     private javax.swing.JTextField jTxtcmc_id_produtos;
     private javax.swing.JTextField jTxtcmc_nome;
     private javax.swing.JTextField jTxtcmc_preço;

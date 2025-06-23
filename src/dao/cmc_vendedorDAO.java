@@ -13,45 +13,35 @@ import java.util.logging.Logger;
 public class cmc_vendedorDAO extends DAO_Abstract {
     private Connection cnt;
 
-//    public cmc_vendedorDAO() {
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
-//            String user = "carlos_coenga";
-//            String pass = "carlos_coenga";
-//            this.cnt = DriverManager.getConnection(url, user, pass);
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(cmc_vendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    
     public cmc_vendedorDAO() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/db_carlos_coenga";
-            String user = "root";
-            String pass = "16515647";
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://10.7.0.51:33062/db_carlos_coenga";
+            String user = "carlos_coenga";
+            String pass = "carlos_coenga";
             this.cnt = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(cmc_clientesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cmc_vendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @Override
     public void insert(Object object) {
         cmc_vendedor vendedor = (cmc_vendedor) object;
         try (PreparedStatement pst = cnt.prepareStatement(
-                "INSERT INTO cmc_vendedor (cmc_nome, cmc_cpf, cmc_data_nascimento, cmc_telefone, cmc_email, cmc_usuario, cmc_senha, cmc_ativo, cmc_data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO cmc_vendedor (cmc_id_vendedor, cmc_nome, cmc_cpf, cmc_data_nascimento, cmc_telefone, cmc_email, cmc_usuario, cmc_senha, cmc_ativo, cmc_data_cadastro) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
-            pst.setString(1, vendedor.getCmc_nome());
-            pst.setString(2, vendedor.getCmc_cpf());
-            pst.setTimestamp(3, (Timestamp) vendedor.getCmc_data_nascimento());
-            pst.setString(4, vendedor.getCmc_telefone());
-            pst.setString(5, vendedor.getCmc_email());
-            pst.setString(6, vendedor.getCmc_usuario());
-            pst.setString(7, vendedor.getCmc_senha());
-            pst.setString(8, vendedor.getCmc_ativo());
-            pst.setTimestamp(9, vendedor.getCmc_data_cadastro());
+            pst.setInt(1, vendedor.getCmc_id_vendedor());
+            pst.setString(2, vendedor.getCmc_nome());
+            pst.setString(3, vendedor.getCmc_cpf());
+            pst.setTimestamp(4, (Timestamp) vendedor.getCmc_data_nascimento());
+            pst.setString(5, vendedor.getCmc_telefone());
+            pst.setString(6, vendedor.getCmc_email());
+            pst.setString(7, vendedor.getCmc_usuario());
+            pst.setString(8, vendedor.getCmc_senha());
+            pst.setString(9, vendedor.getCmc_ativo());
+            pst.setTimestamp(10, vendedor.getCmc_data_cadastro());
 
             pst.executeUpdate();
         } catch (SQLException ex) {

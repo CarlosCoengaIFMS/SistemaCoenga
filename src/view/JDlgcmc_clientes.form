@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="145" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jBtnIncluir" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jBtnAlterar" min="-2" max="-2" attributes="0"/>
@@ -67,9 +67,9 @@
                   <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jFmtcmc_data_criacao" alignment="0" max="32767" attributes="0"/>
                   <Component id="jFmtmc_ultima_compra" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jFmtcmc_data_autualizacao" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jFmtcmc_data_atualizacao" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jTxtcmc_observacoes" min="-2" pref="329" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jFmtcmc_data_autualizacao" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFmtcmc_data_atualizacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -447,7 +447,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFmtcmc_data_criacaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFmtcmc_data_autualizacao">
+    <Component class="javax.swing.JFormattedTextField" name="jFmtcmc_data_atualizacao">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##/##/####" subtype="-1" type="5"/>

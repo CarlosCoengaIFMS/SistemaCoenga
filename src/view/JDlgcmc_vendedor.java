@@ -18,6 +18,9 @@ public class JDlgcmc_vendedor extends javax.swing.JDialog {
     /**
      * Creates new form JDlgcmc_vendedor
      */
+    
+    boolean incluir = false;
+    
     public JDlgcmc_vendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -286,11 +289,13 @@ public void Habilitar(boolean value){
         // TODO add your handling code here:
         Habilitar(Boolean.TRUE);
         limpar();
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluir6ActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Habilitar(Boolean.TRUE);
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -322,10 +327,19 @@ public void Habilitar(boolean value){
     vendedor.setCmc_data_nascimento(null);
     vendedor.setCmc_data_cadastro(null);
 
-    vendedor.setCmc_ativo(jChbcmc_ativo.isSelected() ? "S" : "N");
+    if(jChbcmc_ativo.isSelected() == true){
+                vendedor.setCmc_ativo("S");
+        }else{
+        vendedor.setCmc_ativo("N");
+        }
 
     cmc_vendedorDAO vendedorDao = new cmc_vendedorDAO();
-    vendedorDao.insert(vendedor);
+        if (incluir == true) {
+            vendedorDao.insert(vendedor);
+        }else{
+        vendedorDao.update(vendedor);
+        }
+    
 
     Habilitar(Boolean.FALSE);
     limpar();

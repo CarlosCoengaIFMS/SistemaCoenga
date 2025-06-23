@@ -19,7 +19,7 @@ public class cmc_clientes {
     private String cmc_telefone;
     private String cmc_cpf;
     private String cmc_rg;
-    private Date cmc_data_nacimento;
+    private Date cmc_data_nascimento;
     private String cmc_genero;
     private String cmc_endereco;
     private String cmc_bairro;
@@ -80,12 +80,12 @@ public class cmc_clientes {
         this.cmc_rg = cmc_rg;
     }
 
-    public Date getCmc_data_nacimento() {
-        return cmc_data_nacimento;
+    public Date getCmc_data_nascimento() {
+        return cmc_data_nascimento;
     }
 
-    public void setCmc_data_nacimento(Date cmc_data_nacimento) {
-        this.cmc_data_nacimento = cmc_data_nacimento;
+    public void setCmc_data_nascimento(Date cmc_data_nascimento) {
+        this.cmc_data_nascimento = cmc_data_nascimento;
     }
 
     public String getCmc_genero() {
@@ -176,8 +176,5 @@ public class cmc_clientes {
         this.cmc_status = cmc_status;
     }
 
-    public void setCmc_data_nascimento(java.sql.Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
 };

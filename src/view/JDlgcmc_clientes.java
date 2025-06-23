@@ -21,6 +21,9 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
     /**
      * Creates new form JDlgcmc_clientes
      */
+    
+    boolean incluir = false;
+    
     public JDlgcmc_clientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -43,7 +46,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         jTxtcmc_id_clientes.setEnabled(value);
         jtxtcmc_cidade.setEnabled(value);
         jFmtcmc_cpf.setEnabled(value);
-        jFmtcmc_data_autualizacao.setEnabled(value);
+        jFmtcmc_data_atualizacao.setEnabled(value);
         jFmtcmc_data_criacao.setEnabled(value);
         jFmtcmc_data_de_nascimento.setEnabled(value);
         jFmtcmc_rg.setEnabled(value);
@@ -72,7 +75,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         jTxtcmc_observacoes.setText("");
 
         jFmtcmc_cpf.setText("");
-        jFmtcmc_data_autualizacao.setText("");
+        jFmtcmc_data_atualizacao.setText("");
         jFmtcmc_data_criacao.setText("");
         jFmtcmc_data_de_nascimento.setText("");
         jFmtcmc_rg.setText("");
@@ -132,7 +135,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         jLabel17 = new javax.swing.JLabel();
         jChbcmc_status = new javax.swing.JCheckBox();
         jFmtcmc_data_criacao = new javax.swing.JFormattedTextField();
-        jFmtcmc_data_autualizacao = new javax.swing.JFormattedTextField();
+        jFmtcmc_data_atualizacao = new javax.swing.JFormattedTextField();
         jFmtmc_ultima_compra = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -265,7 +268,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         });
 
         try {
-            jFmtcmc_data_autualizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFmtcmc_data_atualizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -281,7 +284,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnIncluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnAlterar)
@@ -321,8 +324,8 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFmtcmc_data_criacao, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFmtmc_ultima_compra, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFmtcmc_data_autualizacao, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(0, 69, Short.MAX_VALUE)
+                    .addComponent(jFmtcmc_data_atualizacao, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(0, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTxtcmc_observacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,8 +396,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtcmc_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jFmtcmc_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -406,8 +408,8 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtcmc_data_de_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jFmtcmc_data_de_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +424,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
                         .addGap(27, 27, 27)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFmtcmc_data_autualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFmtcmc_data_atualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -452,6 +454,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         Habilitar(true);
         limpar();
+        incluir = true;
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -465,6 +468,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         Habilitar(true);
+        incluir = false;
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
@@ -475,7 +479,7 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         cliente.setCmc_nome(jTxtcmc_nome.getText());
         cliente.setCmc_cpf(jFmtcmc_cpf.getText());
         cliente.setCmc_rg(jFmtcmc_rg.getText());
-        cliente.setCmc_data_nacimento(null); // ou jFmtcmc_data_de_nascimento.getText() convertido para Date
+        cliente.setCmc_data_nascimento(null); // ou jFmtcmc_data_de_nascimento.getText() convertido para Date
         cliente.setCmc_email(jTxtcmc_email.getText());
         cliente.setCmc_telefone(jFmtcmc_telefone.getText());
         cliente.setCmc_endereco(jTxtcmc_endereco.getText());
@@ -496,10 +500,12 @@ public class JDlgcmc_clientes extends javax.swing.JDialog {
         }
 
         cmc_clientesDAO clienteDao = new cmc_clientesDAO();
-        clienteDao.insert(cliente);
-        Habilitar(false);
-        limpar();
-
+        if (incluir == true) {
+            clienteDao.insert(cliente);
+        }else{
+        clienteDao.update(cliente);
+        }
+        
         Habilitar(false);
         limpar();
         // TODO add your handling code here:
@@ -526,12 +532,8 @@ if (opcao == JOptionPane.YES_OPTION) {
     cliente.setCmc_genero(jCbocmc_genero.getSelectedItem().toString());
 
     // Data de nascimento
-    try {
-        java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_de_nascimento.getText());
-        cliente.setCmc_data_nascimento(new java.sql.Date(utilDate.getTime()));
-    } catch (Exception e) {
-        cliente.setCmc_data_nascimento(null);
-    }
+    cliente.setCmc_data_nascimento(null);
+    cliente.setCmc_ultima_compra(null);
 
     // Status
     cliente.setCmc_status(jChbcmc_status.isSelected() ? "S" : "N");
@@ -545,18 +547,12 @@ if (opcao == JOptionPane.YES_OPTION) {
     }
 
     try {
-        java.util.Date dataAtualizacao = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_autualizacao.getText());
+        java.util.Date dataAtualizacao = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtcmc_data_atualizacao.getText());
         cliente.setCmc_data_atualizacao(new java.sql.Timestamp(dataAtualizacao.getTime()));
     } catch (Exception e) {
         cliente.setCmc_data_atualizacao(null);
     }
 
-    try {
-        java.util.Date ultimaCompra = new SimpleDateFormat("dd/MM/yyyy").parse(jFmtmc_ultima_compra.getText());
-        cliente.setCmc_ultima_compra(new java.sql.Date(ultimaCompra.getTime()));
-    } catch (Exception e) {
-        cliente.setCmc_ultima_compra(null);
-    }
 
     // DAO
     cmc_clientesDAO clienteDao = new cmc_clientesDAO();
@@ -601,12 +597,12 @@ if (id != null && !id.trim().isEmpty()) {
 
             // Datas
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            if (cliente.getCmc_data_nacimento()!= null)
-                jFmtcmc_data_de_nascimento.setText(sdf.format(cliente.getCmc_data_nacimento()));
+            if (cliente.getCmc_data_nascimento()!= null)
+                jFmtcmc_data_de_nascimento.setText(sdf.format(cliente.getCmc_data_nascimento()));
             if (cliente.getCmc_data_criacao() != null)
                 jFmtcmc_data_criacao.setText(sdf.format(cliente.getCmc_data_criacao()));
             if (cliente.getCmc_data_atualizacao() != null)
-                jFmtcmc_data_autualizacao.setText(sdf.format(cliente.getCmc_data_atualizacao()));
+                jFmtcmc_data_atualizacao.setText(sdf.format(cliente.getCmc_data_atualizacao()));
             if (cliente.getCmc_ultima_compra() != null)
                 jFmtmc_ultima_compra.setText(sdf.format(cliente.getCmc_ultima_compra()));
         }
@@ -674,7 +670,7 @@ if (id != null && !id.trim().isEmpty()) {
     private javax.swing.JComboBox<String> jCbocmc_genero;
     private javax.swing.JCheckBox jChbcmc_status;
     private javax.swing.JFormattedTextField jFmtcmc_cpf;
-    private javax.swing.JFormattedTextField jFmtcmc_data_autualizacao;
+    private javax.swing.JFormattedTextField jFmtcmc_data_atualizacao;
     private javax.swing.JFormattedTextField jFmtcmc_data_criacao;
     private javax.swing.JFormattedTextField jFmtcmc_data_de_nascimento;
     private javax.swing.JFormattedTextField jFmtcmc_rg;
